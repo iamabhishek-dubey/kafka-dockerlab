@@ -38,6 +38,6 @@ services:
     restart: always
     links:
       - kafka-exporter
-      - kafka-jmx-exporter
+      - kafka
     ports:
       - "9090:9090"
