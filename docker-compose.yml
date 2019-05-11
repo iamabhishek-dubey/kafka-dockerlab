@@ -9,7 +9,7 @@ services:
       - "2181:2181"
 
   kafka:
-    image: wurstmeister/kafka
+    build: ./kafka
     restart: always
     links:
       - zookeeper
@@ -20,7 +20,7 @@ services:
       - KAFKA_ADVERTISED_PORT=9092
       - KAFKA_CREATE_TOPICS=customer:1:1,audit:1:1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - JMX_PORT=9999
+      - KAFKA_OPTS=-javaagent:/usr/app/jmx_prometheus_javaagent.jar=7071:/usr/app/prom-jmx-agent-config.yml
 
   kafka-exporter:
     image: danielqsj/kafka-exporter
@@ -38,5 +38,6 @@ services:
     restart: always
     links:
       - kafka-exporter
+      - kafka-jmx-exporter
     ports:
       - "9090:9090"
