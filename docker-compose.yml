@@ -2,6 +2,7 @@ version: "3.2"
 services:
   zookeeper:
     build: ./zookeeper
+    restart: always
     command:
       - "start-foreground"
     ports:
@@ -9,13 +10,33 @@ services:
 
   kafka:
     image: wurstmeister/kafka
+    restart: always
     links:
       - zookeeper
     ports:
       - "9092:9092"
     environment:
-      - KAFKA_ADVERTISED_HOST_NAME=192.168.1.45
+      - KAFKA_ADVERTISED_HOST_NAME=192.168.0.106
       - KAFKA_ADVERTISED_PORT=9092
       - KAFKA_CREATE_TOPICS=customer:1:1,audit:1:1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - JMX_PORT=9999
+
+  kafka-exporter:
+    image: danielqsj/kafka-exporter
+    restart: always
+    links:
+      - kafka
+    depends_on:
+      - kafka
+    ports:
+      - "9308:9308"
+    command: --kafka.server=kafka:9092
+
+  prometheus:
+    build: ./prometheus
+    restart: always
+    links:
+      - kafka-exporter
+    ports:
+      - "9090:9090"
