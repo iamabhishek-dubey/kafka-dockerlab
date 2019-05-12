@@ -33,3 +33,9 @@ In order for the Kafka broker to expose JMX topic metrics you must send some mes
 cat kafka-messages | docker run -i -a stdin wurstmeister/kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list <docker_host_ip>:9092 --topic customer
 cat kafka-messages | docker run -i -a stdin wurstmeister/kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list <docker_host_ip>:9092 --topic audit
 ```
+
+#### Prometheus UI
+![](./images/prometheus.png)
+
+#### Grafana UI
+![](./images/grafana.png)
