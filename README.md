@@ -9,3 +9,10 @@ We don't have a long list of requirments but yes we do have some of them. The ne
 ## Pre-Requisites
 The only pre-requisite is:-
 - set `KAFKA_ADVERTISED_HOST_NAME` in `docker-compose.yml` to match your docker host IP. (Note: Do not use localhost or 127.0.0.1 as the host ip if you want to run multiple brokers).
+
+## Usage
+For using this setup, you just need to type these magical words on your terminal :wink:.
+
+```shell
+docker-compose up -d
+```
