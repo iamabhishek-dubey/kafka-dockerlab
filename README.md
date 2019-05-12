@@ -23,6 +23,13 @@ docker-compose up -d
 
 After this you can access below services.
 
-- [X] [**Prometheus UI**]() - http://<docker_host_ip>:9090
-- [X] [**Grafana UI**]() - http://<docker_host_ip>:3000
+- [X] [**Prometheus UI**]() - *http://<docker_host_ip>:9090*
+- [X] [**Grafana UI**]() - *http://<docker_host_ip>:3000*
 
+#### Sending Kafka Messages
+In order for the Kafka broker to expose JMX topic metrics you must send some messages to the topics.
+
+```shell
+cat kafka-messages | docker run -i -a stdin wurstmeister/kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list <docker_host_ip>:9092 --topic customer
+cat kafka-messages | docker run -i -a stdin wurstmeister/kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list <docker_host_ip>:9092 --topic audit
+```
