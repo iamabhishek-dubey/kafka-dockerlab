@@ -16,3 +16,8 @@ For using this setup, you just need to type these magical words on your terminal
 ```shell
 docker-compose up -d
 ```
+
+After this you can access below services.
+
+- [X] Prometheus UI - http://<docker_host_ip>:9090
+- [X] Grafana UI - http://<docker_host_ip>:3000
