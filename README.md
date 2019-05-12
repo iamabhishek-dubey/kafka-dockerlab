@@ -19,5 +19,5 @@ docker-compose up -d
 
 After this you can access below services.
 
-- [X] Prometheus UI - http://<docker_host_ip>:9090
-- [X] Grafana UI - http://<docker_host_ip>:3000
+- [X] [**Prometheus UI**]() - http://<docker_host_ip>:9090
+- [X] [**Grafana UI**]() - http://<docker_host_ip>:3000
